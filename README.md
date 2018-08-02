@@ -96,4 +96,4 @@ the acute phase (approximately between 2 and 6 days from onset).
 License
 -------
 
-The tool is distributed under the terms of the MIT licence. See the accompanying [license file](LICENCE.txt) for details. 
+The tool is distributed under the terms of the MIT licence. See the accompanying [licence file](LICENCE.txt) for details. 
