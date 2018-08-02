@@ -40,8 +40,7 @@ framework.
 Preprocessing
 -------------
 
-All the data has to be pre-registered into T1 subject space for the tool to run. We recommend using the [Medical Image Registration ToolKit (MIRTK)]
-(https://github.com/BioMedIA/MIRTK). Parameter files for MIRTK are provided in the `mirtk-params` folder.
+All the data has to be pre-registered into T1 subject space for the tool to run. We recommend using the [Medical Image Registration ToolKit (MIRTK)](https://github.com/BioMedIA/MIRTK). Parameter files for MIRTK are provided in the `mirtk-params` folder.
 
 1. Non-linearly register the provided T1-weighted template (`data/t1w_atlas.nii.gz`) to the T1 sequence of the subject. We recommend to accomplish this 
 by first performing a linear registration of the T1 sequence of the subject to the provided template (using `mirtk-params/mirtk-aff.cfg`), then inverting 
@@ -97,4 +96,4 @@ the acute phase (approximately between 2 and 6 days from onset).
 License
 -------
 
-The tool is distributed under the terms of the MIT licence. See the accompanying [license file](LICENSE.txt) for details. 
+The tool is distributed under the terms of the MIT licence. See the accompanying [license file](LICENCE.txt) for details. 
