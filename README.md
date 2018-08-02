@@ -10,7 +10,7 @@ Required MATLAB libraries
 -------------------------
 
 - For handling of Nifti files the [tools for NIfTI and ANALYZE image](https://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image)
-is required.
+are required.
 - For computation of the Minimum Covariance Determinant (MCD) estimator, the [Library for Robust Analysis](https://wis.kuleuven.be/stat/robust/LIBRA)
 is required.
 
@@ -66,17 +66,18 @@ git reset --hard 23b0fe0
 Running the tool
 ----------------
 
-First make sure all required MATLAB libraries are in the MATLAB PATH.
+First make sure all required MATLAB libraries are in the MATLAB PATH. Then run the following commands:
 
 ```
-nii_t2star = load_untouch_nii('/path/to/t2star_in_t1_space.nii.gz');
+% Load nifti files
+nii_haemo = load_untouch_nii('/path/to/t2star_or_swi_in_t1_space.nii.gz');
 nii_flair = load_untouch_nii('/path/to/flair_in_t1_space.nii.gz');
 nii_malpem_map = load_untouch_nii('/path/to/MALPEM_map_in_t1_space.nii.gz');
 nii_wmh_map = load_untouch_nii('/path/to/WMH_map_in_t1_space.nii.gz');
 
-lambda = 15; %Suggested default
+lambda = 15; % Suggested default
 
-nii_seg = compute_haemorrhagic_segmentation(nii_t2star, nii_flair, nii_malpem_map, nii_wmh_map, lambda);
+nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_malpem_map, nii_wmh_map, lambda);
 
 % To save the segmentation into a nifti file do the following
 save_untouch_nii(nii_seg, 'path/to/segmentation.nii.gz');
