@@ -46,7 +46,8 @@ function nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_m
     voxel_size_mm3 = prod(nii_malpem_map.hdr.dime.pixdim(2:4));
     min_num_voxels = ceil(min_volume_mm3 / voxel_size_mm3);
     
-    csf_labels = [1,2,18,21,22,23,24];
+    ventricular_labels = [1,2,21,22,23,24];
+    csf_labels = [ventricular_labels 18];
     lesion_labels = [3,4,7:9,12,13,16,17,19,20,25:30];
     susceptibility_labels = [10,11,45,46,59:68,71,72,75,76,81,82,89:94,109:112,115,116,119:122,127:134];
     
@@ -64,6 +65,7 @@ function nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_m
     
     brain_mask = malpem_mask & haemo_mask & flair_mask;
     
+    ventricular_mask = brain_mask & ~ismember(nii_malpem_map.img, ventricular_labels);
     wm_gm_mask = brain_mask & ~ismember(nii_malpem_map.img, csf_labels);
     lesion_labels_mask = brain_mask & ismember(nii_malpem_map.img, lesion_labels);
     susceptibility_labels_mask = brain_mask & ismember(nii_malpem_map.img, susceptibility_labels);
@@ -90,7 +92,7 @@ function nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_m
     ich_voxels = haemo_hypo_cc & (nii_flair.img < lesion_thresh);
     ich_voxels = cut_weak_connections(ich_voxels, is_3D_volume);
     ich_voxels = extract_best_cc(ich_voxels);
-    ich_voxels = wm_gm_mask & hole_filling_closing(ich_voxels, 3, is_3D_volume);
+    ich_voxels = hole_filling_closing(ich_voxels, 3, is_3D_volume) & ~ventricular_mask;
 
     flair_brain_hyper_voxels = brain_mask & (nii_flair.img > flair_hyper_thresh);
 
