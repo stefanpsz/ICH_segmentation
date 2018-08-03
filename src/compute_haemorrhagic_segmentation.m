@@ -64,9 +64,9 @@ function nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_m
     flair_mask = hole_filling_closing(flair_mask, 1, is_3D_volume);
     
     brain_mask = malpem_mask & haemo_mask & flair_mask;
-    
-    ventricular_mask = brain_mask & ~ismember(nii_malpem_map.img, ventricular_labels);
-    wm_gm_mask = brain_mask & ~ismember(nii_malpem_map.img, csf_labels);
+
+    wm_gm_mask = brain_mask & ~ismember(nii_malpem_map.img, csf_labels);   
+    ventricular_mask = brain_mask & ismember(nii_malpem_map.img, ventricular_labels);
     lesion_labels_mask = brain_mask & ismember(nii_malpem_map.img, lesion_labels);
     susceptibility_labels_mask = brain_mask & ismember(nii_malpem_map.img, susceptibility_labels);
 
