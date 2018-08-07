@@ -92,7 +92,8 @@ function nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_m
     ich_voxels = haemo_hypo_cc & (nii_flair.img < lesion_thresh);
     ich_voxels = cut_weak_connections(ich_voxels, is_3D_volume);
     ich_voxels = extract_best_cc(ich_voxels);
-    ich_voxels = hole_filling_closing(ich_voxels, 3, is_3D_volume) & ~ventricular_mask;
+    ich_voxels = hole_filling_closing(ich_voxels, 3, is_3D_volume);
+    ich_voxels(ventricular_mask) = false;
 
     flair_brain_hyper_voxels = brain_mask & (nii_flair.img > flair_hyper_thresh);
 
