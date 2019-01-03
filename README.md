@@ -11,8 +11,6 @@ Required MATLAB libraries
 
 - For handling of Nifti files the [tools for NIfTI and ANALYZE image](https://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image)
 are required.
-- For computation of the Minimum Covariance Determinant (MCD) estimator, the [Library for Robust Analysis](https://wis.kuleuven.be/stat/robust/LIBRA)
-is required.
 
 
 Required MRI sequences
@@ -91,7 +89,7 @@ Limitations
 
 - For the moment, this tool can detect just one haemorrhage with its corresponding perihaematomal oedema.
 - This tool assumes the haemorrhage is seen as hypointense in T2* (or SWI) and as iso- or hypointense in FLAIR with a brighter oedema. This is mainly seen in
-the acute phase (approximately between 2 and 6 days from onset).
+the acute phase (approximately between 2 and 7 days from onset).
 
 
 Licence
