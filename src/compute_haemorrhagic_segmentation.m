@@ -24,7 +24,8 @@ function nii_seg = compute_haemorrhagic_segmentation(nii_haemo, nii_flair, nii_m
 % IMPORTANT: All input Nifti structs have to contained pre-registered images (usually in T1 subject space).
 %
 %
-    if ~isequal(size(nii_haemo), size(nii_flair), size(nii_malpem_map), size(nii_wmh_map))
+    if ~isequal(nii_haemo.hdr.dime.dim(2:4), nii_flair.hdr.dime.dim(2:4), nii_malpem_map.hdr.dime.dim(2:4), nii_wmh_map.hdr.dime.dim(2:4)) || ...
+       ~isequal(nii_haemo.hdr.dime.pixdim(2:4), nii_flair.hdr.dime.pixdim(2:4), nii_malpem_map.hdr.dime.pixdim(2:4), nii_wmh_map.hdr.dime.pixdim(2:4))
         error('All Nifti sequences have to be pre-registered to the same space.');
     end
       
